@@ -1,4 +1,5 @@
-sabitler = ['S_bg', 't_bg', 'stA_U238', 'S_st', 't_st', 'm_st', 'S_stbg', 't_stbg', 't']
+# -----------------------------------------------------------------------
+# global degerlerin disaridan alinip degiskenlere atanmasi
 
 degerler = []
 
@@ -8,20 +9,13 @@ with open("sabit_degerler.txt","r") as sabit_degerler:
         sayi_deger = float(deger)
         degerler.append(sayi_deger)
 
+degerler_tup = tuple (degerler)
 
-if len(sabitler)== len(degerler):
-    for i in range(len(sabitler)):
-        for j in range(len(sabitler)):
-            if i == j:
-                sabitler[j] == degerler[j]
+(S_bg, t_bg, stA_U238, S_st, t_st, m_st, S_stbg, t_stbg, t) = degerler_tup
 
-print(sabitler, len(sabitler))
-print(degerler, len(degerler))
-print(S_bg)
+# -----------------------------------------------------------------------
+# sayim hizlari vs hesaplanmasi
 
-
-
-"""
 st_sayhizi = S_st/t_st                		#standartın sayim hizi
 stbg_sayhizi = S_stbg/t_stbg          		#standarta ait bg sayim hizi
 payda = st_sayhizi - stbg_sayhizi       	#aktivite denkleminin paydasi
@@ -56,6 +50,8 @@ print("Standart BG alanı: ", S_stbg, "--","sayım süresi:", t_stbg)
 print("Standarta ait BG sayım hızı: ", stbg_sayhizi,"--","St. sayım hızı farkı", payda)
 print("-------------------------------------------------------------------")
 
+# -----------------------------------------------------------------------
+# numune giris dongusu
 
 i = 0
 while (i < 100) :
@@ -63,4 +59,3 @@ while (i < 100) :
     numune.print()
 
     i += 1
-"""
