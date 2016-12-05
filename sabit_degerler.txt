@@ -1,0 +1,9 @@
+2500				# background alani
+82599.34	# background sayim suresi -saniye-
+795	# standart aktivitesi
+56175	# standart alan�
+4077.38	# standart sayim suresi -saniye-
+1000	# standart k�tlesi -gram-
+5113	# standart lab. background alani
+82599.34	# standart lab. background sayim suresi -saniye-
+56917.36	#sayim suresi -saniye-

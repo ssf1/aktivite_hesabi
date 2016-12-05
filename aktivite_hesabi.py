@@ -1,22 +1,27 @@
-# Global değerler
+sabitler = ['S_bg', 't_bg', 'stA_U238', 'S_st', 't_st', 'm_st', 'S_stbg', 't_stbg', 't']
 
-# background
-S_bg = input("Lab. fon alanının giriniz = ")    # background alani
-t_bg = 82599.34                                 # background sayim suresi -saniye-
+degerler = []
 
-#standart
-stA_U238 = 795
+with open("sabit_degerler.txt","r") as sabit_degerler:
+    for satir in sabit_degerler.readlines():
+        deger, yorum = satir.split("\t",1)
+        sayi_deger = float(deger)
+        degerler.append(sayi_deger)
 
-S_st = 56175                                    # standart alanı
-t_st = 4077.38                                  # standart sayim suresi -saniye-
-m_st = 1000                                    	# standart kütlesi -gram-
 
-S_stbg = 5113                                   # standart lab. background alani
-t_stbg = 82599.34                               # standart lab. background sayim suresi -saniye-
+if len(sabitler)== len(degerler):
+    for i in range(len(sabitler)):
+        for j in range(len(sabitler)):
+            if i == j:
+                sabitler[j] == degerler[j]
 
-#sayim suresi -saniye-
-t = 56917.36
+print(sabitler, len(sabitler))
+print(degerler, len(degerler))
+print(S_bg)
 
+
+
+"""
 st_sayhizi = S_st/t_st                		#standartın sayim hizi
 stbg_sayhizi = S_stbg/t_stbg          		#standarta ait bg sayim hizi
 payda = st_sayhizi - stbg_sayhizi       	#aktivite denkleminin paydasi
@@ -58,3 +63,4 @@ while (i < 100) :
     numune.print()
 
     i += 1
+"""
