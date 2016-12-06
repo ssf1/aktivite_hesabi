@@ -1,21 +1,42 @@
 # -----------------------------------------------------------------------
 # global degerlerin disaridan alinip degiskenlere atanmasi
 
+sabitler = []
+
+artanlar = []
 degerler = []
 
 with open("sabit_degerler.txt","r") as sabit_degerler:
     for satir in sabit_degerler.readlines():
-        deger, yorum = satir.split("\t",1)
+        sembol, artan = satir.split("=",1)
+        sabitler.append(sembol)
+        artanlar.append(artan)
+        print(sembol)
+
+    for i in artanlar:
+        deger, yorum = i.split ("\t",1)
         sayi_deger = float(deger)
         degerler.append(sayi_deger)
+        print(deger)
 
 degerler_tup = tuple (degerler)
+sabitler_tup = tuple (sabitler)
 
-(S_bg, t_bg, stA_U238, S_st, t_st, m_st, S_stbg, t_stbg, t) = degerler_tup
 
+for i in range(len(sabitler)):
+    sabitler_tup[i]=degerler_tup[i]
+
+
+
+print(sabitler_tup)
+print(degerler_tup)
+
+print(sabitler)
+print(degerler)
+print(t)
 # -----------------------------------------------------------------------
 # sayim hizlari vs hesaplanmasi
-
+"""
 st_sayhizi = S_st/t_st                		#standartın sayim hizi
 stbg_sayhizi = S_stbg/t_stbg          		#standarta ait bg sayim hizi
 payda = st_sayhizi - stbg_sayhizi       	#aktivite denkleminin paydasi
@@ -59,3 +80,4 @@ while (i < 100) :
     numune.print()
 
     i += 1
+"""
