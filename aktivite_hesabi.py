@@ -1,39 +1,32 @@
 # -----------------------------------------------------------------------
 # global degerlerin disaridan alinip degiskenlere atanmasi
-
-sabitler = []
-
-artanlar = []
+sembollerdegerler = []
+semboller = []
 degerler = []
 
 with open("sabit_degerler.txt","r") as sabit_degerler:
     for satir in sabit_degerler.readlines():
-        sembol, artan = satir.split("=",1)
-        sabitler.append(sembol)
-        artanlar.append(artan)
-        print(sembol)
+        semboldeger, artik = satir.split("\t",1)
+        sembollerdegerler.append(semboldeger)
 
-    for i in artanlar:
-        deger, yorum = i.split ("\t",1)
-        sayi_deger = float(deger)
-        degerler.append(sayi_deger)
-        print(deger)
+    for i in sembollerdegerler:
+        sembol, deger = i.split ("=",1)
+        sembol = str(sembol)
+        deger = float(deger)
+        semboller.append(sembol)
+        degerler.append(deger)
 
-degerler_tup = tuple (degerler)
-sabitler_tup = tuple (sabitler)
-
-
-for i in range(len(sabitler)):
-    sabitler_tup[i]=degerler_tup[i]
+def eslestir (semboller,degerler):
+    for i in range(len(semboller)):
+        #semboller[i] = semboller[i].split('')
+        semboller[i] == degerler[i]
 
 
+eslestir(semboller,degerler)
 
-print(sabitler_tup)
-print(degerler_tup)
-
-print(sabitler)
+print(semboller)
 print(degerler)
-print(t)
+
 # -----------------------------------------------------------------------
 # sayim hizlari vs hesaplanmasi
 """
