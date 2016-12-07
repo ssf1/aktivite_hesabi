@@ -1,31 +1,35 @@
 # -----------------------------------------------------------------------
 # global degerlerin disaridan alinip degiskenlere atanmasi
-sembollerdegerler = []
-semboller = []
-degerler = []
+degiskenler = []
 
-with open("sabit_degerler.txt","r") as sabit_degerler:
-    for satir in sabit_degerler.readlines():
-        semboldeger, artik = satir.split("\t",1)
-        sembollerdegerler.append(semboldeger)
-
-    for i in sembollerdegerler:
-        sembol, deger = i.split ("=",1)
-        sembol = str(sembol)
-        deger = float(deger)
-        semboller.append(sembol)
-        degerler.append(deger)
-
-def eslestir (semboller,degerler):
-    for i in range(len(semboller)):
-        #semboller[i] = semboller[i].split('')
-        semboller[i] == degerler[i]
+with open("sabit_degerler.txt","r") as sabit_degerler:      # sabitlerin oldugu txt dosyasini actik
+    for satir in sabit_degerler.readlines():                # satirlari okuttuk
+        semboldeger, artik = satir.split("\t",1)            # satirlardaki sembol = deger iceren kismi ayirdik
+        sembol, deger = semboldeger.split(' = ',1)            # sembol ve deger kismimi bolduk
+        sembol = str(sembol)                                # sembolleri string yaptik
+        deger = float(deger)                                # sayilari float yaptik
+        degiskenler.append(sembol)                          # sembol ve degerleri sirayla yeni listeye ekledik
+        degiskenler.append(deger)
 
 
-eslestir(semboller,degerler)
+def sembolcu():
+    for i in range(len(degiskenler)):
+        if i % 2 == 0:
+            degiskenler[i]= degiskenler[i].strip('')
+            degiskenler[i] == degiskenler[i+1]
+            print(degiskenler[i])
 
-print(semboller)
-print(degerler)
+
+
+
+sembolcu()
+
+
+
+
+print(degiskenler)
+print(t)
+
 
 # -----------------------------------------------------------------------
 # sayim hizlari vs hesaplanmasi
