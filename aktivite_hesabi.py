@@ -1,6 +1,8 @@
-# -----------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------
 # global degerlerin disaridan alinip degiskenlere atanmasi
-degiskenler = []
+
+semboller = []
+degerler = []
 
 with open("sabit_degerler.txt","r") as sabit_degerler:      # sabitlerin oldugu txt dosyasini actik
     for satir in sabit_degerler.readlines():                # satirlari okuttuk
@@ -8,38 +10,19 @@ with open("sabit_degerler.txt","r") as sabit_degerler:      # sabitlerin oldugu 
         sembol, deger = semboldeger.split(' = ',1)            # sembol ve deger kismimi bolduk
         sembol = str(sembol)                                # sembolleri string yaptik
         deger = float(deger)                                # sayilari float yaptik
-        degiskenler.append(sembol)                          # sembol ve degerleri sirayla yeni listeye ekledik
-        degiskenler.append(deger)
+        semboller.append(sembol)                          # sembol ve degerleri sirayla yeni listeye ekledik
+        degerler.append(deger)
 
+(S_bg, t_bg, stA_U238, S_st, t_st, m_st, S_stbg, t_stbg, t) = degerler
 
-def sembolcu():
-    for i in range(len(degiskenler)):
-        if i % 2 == 0:
-            degiskenler[i]= degiskenler[i].strip('')
-            degiskenler[i] == degiskenler[i+1]
-            print(degiskenler[i])
-
-
-
-
-sembolcu()
-
-
-
-
-print(degiskenler)
-print(t)
-
-
-# -----------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------
 # sayim hizlari vs hesaplanmasi
-"""
+
 st_sayhizi = S_st/t_st                		#standartın sayim hizi
 stbg_sayhizi = S_stbg/t_stbg          		#standarta ait bg sayim hizi
 payda = st_sayhizi - stbg_sayhizi       	#aktivite denkleminin paydasi
 
 bg_sayhizi = float(S_bg) / t_bg
-
 
 class Aktivite():
 
@@ -58,17 +41,16 @@ class Aktivite():
         print("aktivite : ", self.A_nm)
         print("---------------------")
 
-
 print("-------------------------------------------------------------------")
 print("global değerler")
-print("BG alanı: ", S_bg, "--", "sayım süresi", t_bg, "--","BG Sayım hızı : ", bg_sayhizi)
-print("Standart aktivitesi:", stA_U238, "--", "alani:", S_st, "--", "sayım suresi", t_st, "--","kutlesi:",m_st)
+print("BG alanı: ", S_bg, "--", "BG sayım süresi", t_bg, "--","BG Sayım hızı : ", bg_sayhizi)
+print("Standart aktivitesi:", stA_U238, "--", " St alani:", S_st, "--", "St sayım suresi", t_st, "--"," St kutlesi:",m_st)
 print("Standartın sayım hızı:", st_sayhizi)
-print("Standart BG alanı: ", S_stbg, "--","sayım süresi:", t_stbg)
-print("Standarta ait BG sayım hızı: ", stbg_sayhizi,"--","St. sayım hızı farkı", payda)
+print("Standart BG alanı: ", S_stbg, "--","St BG sayım süresi:", t_stbg)
+print("Standarta ait BG sayım hızı: ", stbg_sayhizi,"--","St sayım hızı farkı", payda)
 print("-------------------------------------------------------------------")
 
-# -----------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------
 # numune giris dongusu
 
 i = 0
@@ -77,4 +59,4 @@ while (i < 100) :
     numune.print()
 
     i += 1
-"""
+# ------------------------------------------------------------------------------------------------------
