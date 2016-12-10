@@ -22,7 +22,6 @@ class Aktivite():
         (t_stbg, stbgU1_Alan, stbgU2_Alan, stbgU3_Alan, stbgCs_Alan, stbgTh_Alan, stbgK_Alan) = degerler[19:26]  #standart lab. bg degerleri
 
 
-
     def olcum_degerleri(self):
         with open("olcumler.csv", "r") as olcumler:
             reader = csv.DictReader(olcumler)
@@ -41,7 +40,7 @@ class Aktivite():
                 for i in semboller:
                     print(i*2)
 
-print()
+
 
 
 
@@ -93,7 +92,5 @@ while (i < 100) :
 
     i += 1
 # ------------------------------------------------------------------------------------------------------
-
-
 
 """
