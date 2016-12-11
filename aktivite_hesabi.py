@@ -1,47 +1,46 @@
 import csv
 
-class Aktivite():
-    # ------------------------------------------------------------------------------------------------------
-    # global degerlerin disaridan alinip degiskenlere atanmasi
-    def sabitler():
-        semboller = []
-        degerler = []
+# ------------------------------------------------------------------------------------------------------
+# global degerlerin disaridan alinip degiskenlere atanmasi
 
-        with open("sabit_degerler","r") as sabit_degerler:      # sabitlerin oldugu txt dosyasini actik
-            for satir in sabit_degerler.readlines():                # satirlari okuttuk
-                semboldeger, atik = satir.split("\t",1)             # satirlardaki sembol = deger iceren kismi ayirdik
-                sembol, deger = semboldeger.split(' = ')            # sembol ve deger kismimi bolduk
-                sembol = str(sembol)                                # sembolleri string yaptik
-                deger = float(deger)                                # sayilari float yaptik
-                semboller.append(sembol)                            # sembol ve degerleri sirayla yeni listeye ekledik
-                degerler.append(deger)
+semboller = []
+degerler = []
 
-        (t_bg, bgU1_Alan, bgU2_Alan, bgU3_Alan, bgCs_Alan, bgTh_Alan, bgK_Alan) = degerler[:7]      #background degerleri
-        (stAU, stATh, stAK, stASoil, m_st) = degerler[7:12]                                               # standart degerleri
-        (t_st, stU1_Alan, stU2_Alan, stU3_Alan, stCs_Alan, stTh_Alan, stK_Alan) = degerler[12:19]     # standart sayimlari
-        (t_stbg, stbgU1_Alan, stbgU2_Alan, stbgU3_Alan, stbgCs_Alan, stbgTh_Alan, stbgK_Alan) = degerler[19:26]  #standart lab. bg degerleri
+with open("sabit_degerler", "r") as sabit_degerler:  # sabitlerin oldugu txt dosyasini actik
+    for satir in sabit_degerler.readlines():  # satirlari okuttuk
+        semboldeger, atik = satir.split("\t", 1)  # satirlardaki sembol = deger iceren kismi ayirdik
+        sembol, deger = semboldeger.split(' = ')  # sembol ve deger kismimi bolduk
+        sembol = str(sembol)  # sembolleri string yaptik
+        deger = float(deger)  # sayilari float yaptik
+        semboller.append(sembol)  # sembol ve degerleri sirayla yeni listeye ekledik
+        degerler.append(deger)
 
-
-    def olcum_degerleri(self):
-        with open("olcumler.csv", "r") as olcumler:
-            reader = csv.DictReader(olcumler)
-            for satir in reader:
-                no = satir['numune']
-                m = float(satir['kütle'])
-                t = float(satir['sayım süresi'])
-                U1 = float(satir['U1'])
-                U2 = float(satir['U2'])
-                U3 = float(satir['U3'])
-                Cs = float(satir['Cs'])
-                Th = float(satir['Th'])
-                K = float(satir['K'])
-                semboller = (U1, U2, U3, Cs, Th, K)
-                print(no, "", m, "", t)
-                for i in semboller:
-                    print(i*2)
+(t_bg, bgU1_Alan, bgU2_Alan, bgU3_Alan, bgCs_Alan, bgTh_Alan, bgK_Alan) = degerler[:7]  # background degerleri
+(stAU, stATh, stAK, stASoil, m_st) = degerler[7:12]  # standart degerleri
+(t_st, stU1_Alan, stU2_Alan, stU3_Alan, stCs_Alan, stTh_Alan, stK_Alan) = degerler[12:19]  # standart sayimlari
+(t_stbg, stbgU1_Alan, stbgU2_Alan, stbgU3_Alan, stbgCs_Alan, stbgTh_Alan, stbgK_Alan) = degerler[
+                                                                                        19:26]  # standart lab. bg degerleri
 
 
+def olcum_degerleri():
+    with open("olcumler.csv", "r") as olcumler:
+        reader = csv.DictReader(olcumler)
+        for satir in reader:
+            no = satir['numune']
+            m = float(satir['kütle'])
+            t = float(satir['sayım süresi'])
+            U1 = float(satir['U1'])
+            U2 = float(satir['U2'])
+            U3 = float(satir['U3'])
+            Cs = float(satir['Cs'])
+            Th = float(satir['Th'])
+            K = float(satir['K'])
+            semboller = (U1, U2, U3, Cs, Th, K)
+            print(no, "", m, "", t)
+            for i in semboller:
+                print(i * 2)
 
+olcum_degerleri()
 
 
 
