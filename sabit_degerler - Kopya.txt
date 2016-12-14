@@ -1,9 +1,0 @@
-S_bg = 2500	# background alani
-t_bg = 82599.34	# background sayim suresi -saniye-
-stA_U238 = 795	# standart aktivitesi
-S_st = 56175	# standart alanı
-t_st = 4077.38	# standart sayim suresi -saniye-
-m_st = 1000	# standart kütlesi -gram-
-S_stbg = 5113	# standart lab. background alani
-t_stbg = 82599.34	# standart lab. background sayim suresi -saniye-
-t = 56917.36	#sayim suresi -saniye-
