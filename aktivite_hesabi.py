@@ -15,34 +15,55 @@ with open("sabit_degerler", "r") as sabit_degerler:  # sabitlerin oldugu txt dos
         semboller.append(sembol)  # sembol ve degerleri sirayla yeni listeye ekledik
         degerler.append(deger)
 
-(t_bg, bgU1_Alan, bgU2_Alan, bgU3_Alan, bgCs_Alan, bgTh_Alan, bgK_Alan) = degerler[:7]  # background degerleri
-(stAU, stATh, stAK, stASoil, m_st) = degerler[7:12]  # standart degerleri
-(t_st, stU1_Alan, stU2_Alan, stU3_Alan, stCs_Alan, stTh_Alan, stK_Alan) = degerler[12:19]  # standart sayimlari
-(t_stbg, stbgU1_Alan, stbgU2_Alan, stbgU3_Alan, stbgCs_Alan, stbgTh_Alan, stbgK_Alan) = degerler[
-                                                                                        19:26]  # standart lab. bg degerleri
+# background degerleri
+(t_bg,) = degerler[0:1]
+(bgU1_Alan, bgU2_Alan, bgU3_Alan, bgCs_Alan, bgTh_Alan, bgK_Alan) = degerler[1:7]
+backgroundlar = (bgU1_Alan, bgU2_Alan, bgU3_Alan, bgCs_Alan, bgTh_Alan, bgK_Alan)   ############################
+# standart degerleri
+(stAU, stATh, stAK, stASoil) = degerler[7:11]
+aktiviteler = (stAU, stAU, stAU, stATh, stAK, stASoil)                              ############################
+(m_st,)= degerler[11:12]
+(t_st,) = degerler[12:13]
+(stU1_Alan, stU2_Alan, stU3_Alan, stCs_Alan, stTh_Alan, stK_Alan) = degerler[13:19]  # standart sayimlari
+aktivite_alanlari = (stU1_Alan, stU2_Alan, stU3_Alan, stCs_Alan, stTh_Alan, stK_Alan)   ############################
+(t_stbg,) = degerler[19:20]
+(stbgU1_Alan, stbgU2_Alan, stbgU3_Alan, stbgCs_Alan, stbgTh_Alan, stbgK_Alan) = degerler[20:26]  # standart lab. bg degerleri
+standart_background = (stbgU1_Alan, stbgU2_Alan, stbgU3_Alan, stbgCs_Alan, stbgTh_Alan, stbgK_Alan)     #############
 
 
 def olcum_degerleri():
+    Aktiviteler = []
     with open("olcumler.csv", "r") as olcumler:
         reader = csv.DictReader(olcumler)
         for satir in reader:
+            numune_aktivite = []
             no = satir['numune']
-            m = float(satir['kütle'])
-            t = float(satir['sayım süresi'])
+            m = float(satir['kutle'])
+            t = float(satir['sayim suresi'])
             U1 = float(satir['U1'])
             U2 = float(satir['U2'])
             U3 = float(satir['U3'])
             Cs = float(satir['Cs'])
             Th = float(satir['Th'])
             K = float(satir['K'])
-            semboller = (U1, U2, U3, Cs, Th, K)
-            print(no, "", m, "", t)
-            for i in semboller:
-                print(i * 2)
+            olculer = (U1, U2, U3, Cs, Th, K)
+            for i in range(len(olculer)):
+                alan = olculer[i]
+                alan_bg = backgroundlar[i]
+                alan_st = aktivite_alanlari[i]
+                alan_stbg = standart_background[i]
+                st_A = aktiviteler[i]
+
+                aktivite = st_A*((alan/t)-(alan_bg/t_bg))/((alan_st/t_st)-(alan_stbg/t_stbg))*(m_st/m)
+                numune_aktivite.append(aktivite)
+            Aktiviteler.append(numune_aktivite)
+
+    for i in range(len(Aktiviteler)):
+        print(Aktiviteler[i][0])
+
+
 
 olcum_degerleri()
-
-
 
 """
 
