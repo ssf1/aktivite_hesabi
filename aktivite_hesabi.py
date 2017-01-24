@@ -1,5 +1,4 @@
 import csv
-
 # ------------------------------------------------------------------------------------------------------
 # global degerlerin disaridan alinip degiskenlere atanmasi
 
@@ -30,9 +29,12 @@ aktivite_alanlari = (stU1_Alan, stU2_Alan, stU3_Alan, stCs_Alan, stTh_Alan, stK_
 (stbgU1_Alan, stbgU2_Alan, stbgU3_Alan, stbgCs_Alan, stbgTh_Alan, stbgK_Alan) = degerler[20:26]  # standart lab. bg degerleri
 standart_background = (stbgU1_Alan, stbgU2_Alan, stbgU3_Alan, stbgCs_Alan, stbgTh_Alan, stbgK_Alan)     #############
 
+# ------------------------------------------------------------------------------------------------------
+# olcum degerlerinin dis dosyadan okutulmasi
 
 def olcum_degerleri():
     Aktiviteler = []
+    Numuneler = []
     with open("olcumler.csv", "r") as olcumler:
         reader = csv.DictReader(olcumler)
         for satir in reader:
@@ -56,61 +58,53 @@ def olcum_degerleri():
 
                 aktivite = st_A*((alan/t)-(alan_bg/t_bg))/((alan_st/t_st)-(alan_stbg/t_stbg))*(m_st/m)
                 numune_aktivite.append(aktivite)
+
             Aktiviteler.append(numune_aktivite)
+            Numuneler.append(no)
 
+# ------------------------------------------------------------------------------------------------------
+# sonuclar.txt dosyasına yazdıran kisim
+    with open("sonuclar.txt", "w") as sonuclar:
+        print("Numune", " "*9, "U1"," "*21, "U2"," "*20, "U3"," "*20, "Cs", " "*20, "Th", " "*20, "K", file=sonuclar, end="\n")
+        print("-"*6, " ", "-"*20, " "*2, "-"*20, " "*3, "-"*20, " ", "-"*20, " "*2, "-"*20, " "*2, "-"*20,  file=sonuclar, end="\n")
+        for i in range(len(Aktiviteler)):
+            print(" ",Numuneler[i]," "*5,
+                  Aktiviteler[i][0]," "*(22-len(str(Aktiviteler[i][0]))),
+                  Aktiviteler[i][1]," "*(22-len(str(Aktiviteler[i][1]))),
+                  Aktiviteler[i][2], " " * (22 - len(str(Aktiviteler[i][2]))),
+                  Aktiviteler[i][3], " " * (22 - len(str(Aktiviteler[i][3]))),
+                  Aktiviteler[i][4], " " * (22 - len(str(Aktiviteler[i][4]))),
+                  Aktiviteler[i][5], " " * (22 - len(str(Aktiviteler[i][5]))),
+                  file=sonuclar, end="\n"
+                  )
+# ------------------------------------------------------------------------------------------------------
+# sonuclar.csv dosyasına yazdıran kisim
+    with open("sonuclar.csv", "w") as sonuclar:
+        print("Numune",",", "U1", ",","U2", ",","U3", ",","Cs", ",","Th", ",","K", file=sonuclar, end="\n")
+        for i in range(len(Aktiviteler)):
+            print(Numuneler[i],",",
+                  Aktiviteler[i][0],",",
+                  Aktiviteler[i][1],",",
+                  Aktiviteler[i][2],",",
+                  Aktiviteler[i][3],",",
+                  Aktiviteler[i][4],",",
+                  Aktiviteler[i][5],
+                  file=sonuclar, end="\n"
+                  )
+# ------------------------------------------------------------------------------------------------------
+# sonuclari ekrana yazdıran kisim
+    print("Numune", " "*9, "U1"," "*21, "U2"," "*20, "U3"," "*20, "Cs", " "*20, "Th", " "*20, "K")
+    print("-"*6, " ", "-"*20, " "*2, "-"*20, " "*3, "-"*20, " ", "-"*20, " "*2, "-"*20, " "*2, "-"*20)
     for i in range(len(Aktiviteler)):
-        print(Aktiviteler[i][0])
-
+        print(" ",Numuneler[i]," "*5,
+              Aktiviteler[i][0], " " * (22 - len(str(Aktiviteler[i][0]))),
+              Aktiviteler[i][1], " " * (22 - len(str(Aktiviteler[i][1]))),
+              Aktiviteler[i][2], " " * (22 - len(str(Aktiviteler[i][2]))),
+              Aktiviteler[i][3], " " * (22 - len(str(Aktiviteler[i][3]))),
+              Aktiviteler[i][4], " " * (22 - len(str(Aktiviteler[i][4]))),
+              Aktiviteler[i][5], " " * (22 - len(str(Aktiviteler[i][5]))),
+              )
 
 
 olcum_degerleri()
 
-"""
-
-# ------------------------------------------------------------------------------------------------------
-# sayim hizlari vs hesaplanmasi
-
-st_sayhizi = st_Alan------/t_st----                		#standartın sayim hizi
-stbg_sayhizi = stbg_Alan-----/t_stbg----          		#standarta ait bg sayim hizi
-payda = st_sayhizi - stbg_sayhizi       	#aktivite denkleminin paydasi
-
-bg_sayhizi = float(bg_Alan------) / t_bg
-
-class Aktivite():
-
-    def __init__(self, ornek_no, kutle, alan):
-        self.ornek_no = ornek_no
-        self.kutle = kutle
-        self.alan = alan
-        self.sayhizi = float(alan)/t
-        self.A_nm = stA * (self.sayhizi - bg_sayhizi)/payda * m_st/float(kutle)
-
-    def print(self):
-        print("-" * 20)
-        print(self.ornek_no, "numaralı numune değerleri : ")
-        print("kütle:", self.kutle, "g", "---","alan=", self.alan)
-        print("sayım hızı:", self.sayhizi)
-        print("aktivite : ", self.A_nm)
-        print("-" * 20)
-
-print("-" * 40)
-print("----- global değerler -----")
-print("BG alanı: ", bg_Alan, "--", "BG sayım süresi", t_bg, "--","BG Sayım hızı : ", bg_sayhizi)
-print("Standart aktivitesi:", stA, "--", " St alani:", st_Alan, "--", "St sayım suresi", t_st, "--"," St kutlesi:",m_st)
-print("Standartın sayım hızı:", st_sayhizi)
-print("Standart BG alanı: ", stbg_Alan, "--","St BG sayım süresi:", t_stbg)
-print("Standarta ait BG sayım hızı: ", stbg_sayhizi,"--","St sayım hızı farkı", payda)
-print("-" * 40)
-
-# ------------------------------------------------------------------------------------------------------
-# numune giris dongusu
-
-i = 0
-while (i < 100) :
-    numune = Aktivite(input("Numune No = "), input("Numune kutlesi = "), input("Alan = "))
-    numune.print()
-
-    i += 1
-# ------------------------------------------------------------------------------------------------------
-
-"""
