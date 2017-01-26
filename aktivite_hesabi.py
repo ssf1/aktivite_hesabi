@@ -109,55 +109,59 @@ def olcum_degerleri():
 # ------------------------------------------------------------------------------------------------------
 # sonuclar.txt dosyasına yazdıran kisim
     with open("sonuclar.txt", "w") as sonuclar:
-        print("Numune", " "*9, "U1"," "*21, "U2"," "*20, "U3"," "*20, "Cs", " "*20, "Th", " "*20, "K", file=sonuclar, end="\n")
-        print("-"*6, " ", "-"*20, " "*2, "-"*20, " "*3, "-"*20, " ", "-"*20, " "*2, "-"*20, " "*2, "-"*20,  file=sonuclar, end="\n")
+        isim = "No", "U1", "U1 hata", "U2", "U2 hata", "U3", "U3 hata", "Cs", "Cs hata", "Th", "Th hata", "K", "K hata"
+        cizgi = "-"
+        print("{:^4} {:^12} {:^12} {:^12} {:^12} {:^12} {:^12} {:^12} {:^12} {:^12} {:^12} {:^12} {:^12} ".format(isim[0], isim[1], isim[2], isim[3], isim[4], isim[5], isim[6], isim[7], isim[8], isim[9], isim[10],isim[11],isim[12]), file=sonuclar)
+        print("{0:-^4} {0:-^12} {0:-^12} {0:-^12} {0:-^12} {0:-^12} {0:-^12} {0:-^12} {0:-^12} {0:-^12} {0:-^12} {0:-^12} {0:-^12}".format(cizgi, cizgi), file=sonuclar)
+
         for i in range(len(Aktiviteler)):
-            print(" ",Numuneler[i]," "*5,
-                  Aktiviteler[i][0]," "*(22-len(str(Aktiviteler[i][0]))),
-                  Aktiviteler[i][1]," "*(22-len(str(Aktiviteler[i][1]))),
-                  Aktiviteler[i][2], " " * (22 - len(str(Aktiviteler[i][2]))),
-                  Aktiviteler[i][3], " " * (22 - len(str(Aktiviteler[i][3]))),
-                  Aktiviteler[i][4], " " * (22 - len(str(Aktiviteler[i][4]))),
-                  Aktiviteler[i][5], " " * (22 - len(str(Aktiviteler[i][5]))),
-                  file=sonuclar, end="\n"
-                  )
+            print(
+                "{:^4} {:>12.2f} {:>12.2f} {:>12.2f} {:>12.2f} {:>12.2f} {:>12.2f} {:>12.2f} {:>12.2f} {:>12.2f} {:>12.2f} {:>12.2f} {:>12.2f}"
+
+                    .format(
+                    Numuneler[i],
+                    Aktiviteler[i][0], err_Aktiviteler[i][0],
+                    Aktiviteler[i][1], err_Aktiviteler[i][1],
+                    Aktiviteler[i][2], err_Aktiviteler[i][2],
+                    Aktiviteler[i][3], err_Aktiviteler[i][3],
+                    Aktiviteler[i][4], err_Aktiviteler[i][4],
+                    Aktiviteler[i][5], err_Aktiviteler[i][5]
+                ), file=sonuclar
+            )
 # ------------------------------------------------------------------------------------------------------
 # sonuclar.csv dosyasına yazdıran kisim
     with open("sonuclar.csv", "w") as sonuclar:
-        print("Numune",",", "U1", ",","U2", ",","U3", ",","Cs", ",","Th", ",","K", file=sonuclar, end="\n")
+        print("No",",", "U1",",", "U1 hata",",", "U2",",", "U2 hata",",", "U3",",", "U3 hata",",", "Cs",",", "Cs hata",",", "Th",",", "Th hata",",", "K",",", "K hata", file=sonuclar, end="\n")
         for i in range(len(Aktiviteler)):
             print(Numuneler[i],",",
-                  Aktiviteler[i][0],",",
-                  Aktiviteler[i][1],",",
-                  Aktiviteler[i][2],",",
-                  Aktiviteler[i][3],",",
-                  Aktiviteler[i][4],",",
-                  Aktiviteler[i][5],
+                  Aktiviteler[i][0],",",err_Aktiviteler[i][0],",",
+                  Aktiviteler[i][1],",",err_Aktiviteler[i][0],",",
+                  Aktiviteler[i][2],",",err_Aktiviteler[i][0],",",
+                  Aktiviteler[i][3],",",err_Aktiviteler[i][0],",",
+                  Aktiviteler[i][4],",",err_Aktiviteler[i][0],",",
+                  Aktiviteler[i][5],",",err_Aktiviteler[i][0],
                   file=sonuclar, end="\n"
                   )
 # ------------------------------------------------------------------------------------------------------
 # sonuclari ekrana yazdıran kisim
-    isim = "Numune", "U1", "U1 hata", "U2", "U2 hata", "U3", "U3 hata", "Cs", "Cs hata", "Th", "Th hata", "K", "K hata"
-    print()
-    print("|{:^8}| |{:^10}| |{:^10}| |{:^10}| |{:^10}| |{:^10}| |{:^10}| |{:^10}| |{:^10}| |{:^10}| |{:^10}| |{:^10}| |{:^10}|  ".format(isim[0], isim[1], isim[2], isim[0], isim[1], isim[2], isim[0], isim[1], isim[2], isim[0], isim[1], isim[2], isim[2]))
+    isim = "No", "U1", "U1 hata", "U2", "U2 hata", "U3", "U3 hata", "Cs", "Cs hata", "Th", "Th hata", "K", "K hata"
+    cizgi = "-"
+    print("{:^4} {:^12} {:^12} {:^12} {:^12} {:^12} {:^12} {:^12} {:^12} {:^12} {:^12} {:^12} {:^12} ".format(isim[0], isim[1], isim[2], isim[3], isim[4], isim[5], isim[6], isim[7], isim[8], isim[9], isim[10], isim[11], isim[12]))
+    print("{0:-^4} {0:-^12} {0:-^12} {0:-^12} {0:-^12} {0:-^12} {0:-^12} {0:-^12} {0:-^12} {0:-^12} {0:-^12} {0:-^12} {0:-^12}".format(cizgi, cizgi))
 
-    #    print("Numune", " "*9, "U1"," "*21, "U1 hata"," "*21, "U2"," "*20, "U2 hata"," "*21, "U3"," "*20, "U3 hata"," "*20, "Cs", " "*20, "Cs hata"," "*20, "Th", " "*20, "Th hata", " "*20, "K", " "*20, "K hata",)
-    print("-"*6, " ", "-"*20, " "*2, "-"*20, " "*3, "-"*20, " ", "-"*20, " "*2, "-"*20, " "*2, "-"*20)
     for i in range(len(Aktiviteler)):
-        print(" ",Numuneler[i]," "*5,
-              Aktiviteler[i][0], " " * (22 - len(str(Aktiviteler[i][0]))),
-              err_Aktiviteler[i][0], " " * (22 - len(str(err_Aktiviteler[i][0]))),
-              Aktiviteler[i][1], " " * (22 - len(str(Aktiviteler[i][1]))),
-              err_Aktiviteler[i][1], " " * (22 - len(str(err_Aktiviteler[i][1]))),
-              Aktiviteler[i][2], " " * (22 - len(str(Aktiviteler[i][2]))),
-              err_Aktiviteler[i][2], " " * (22 - len(str(err_Aktiviteler[i][2]))),
-              Aktiviteler[i][3], " " * (22 - len(str(Aktiviteler[i][3]))),
-              err_Aktiviteler[i][3], " " * (22 - len(str(err_Aktiviteler[i][3]))),
-              Aktiviteler[i][4], " " * (22 - len(str(Aktiviteler[i][4]))),
-              err_Aktiviteler[i][4], " " * (22 - len(str(err_Aktiviteler[i][4]))),
-              Aktiviteler[i][5], " " * (22 - len(str(Aktiviteler[i][5]))),
-              err_Aktiviteler[i][5], " " * (22 - len(str(err_Aktiviteler[i][5]))),
-              )
+        print("{:^4} {:>12.2f} {:>12.2f} {:>12.2f} {:>12.2f} {:>12.2f} {:>12.2f} {:>12.2f} {:>12.2f} {:>12.2f} {:>12.2f} {:>12.2f} {:>12.2f}"
+
+            .format (
+            Numuneler[i],
+            Aktiviteler[i][0], err_Aktiviteler[i][0],
+            Aktiviteler[i][1], err_Aktiviteler[i][1],
+            Aktiviteler[i][2], err_Aktiviteler[i][2],
+            Aktiviteler[i][3], err_Aktiviteler[i][3],
+            Aktiviteler[i][4], err_Aktiviteler[i][4],
+            Aktiviteler[i][5], err_Aktiviteler[i][5]
+        )
+        )
 
 
 olcum_degerleri()
